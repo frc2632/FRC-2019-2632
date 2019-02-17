@@ -8,6 +8,7 @@
 package org.usfirst.frc2632.MyRobot.subsystems;
 
 import org.usfirst.frc2632.MyRobot.RobotMap;
+import org.usfirst.frc2632.MyRobot.commands.BallDrop;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -19,20 +20,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class BallSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  Solenoid tilt = new Solenoid(RobotMap.BALL_SOLENOID);
-  Servo leftServo = new Servo(RobotMap.BALL_LEFT_SERVO);
-  Servo rightServo = new Servo(RobotMap.BALL_RIGHT_SERVO);
-  
+  Solenoid solenoid = new Solenoid(RobotMap.BALL_SOLENOID);
   
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    //setDefaultCommand(new BallDrop());
   }
 
   public void tilt(boolean direction){
     //false = right, true = left
-    tilt.set(direction);
+    solenoid.set(direction);
     
     
   }

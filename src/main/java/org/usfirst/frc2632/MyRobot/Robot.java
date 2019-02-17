@@ -38,6 +38,7 @@ public class Robot extends TimedRobot {
     public static DriveTrainSubsystem driveTrainSubsystem;
     public static LiftSystem liftSystem;
     public static CompressorSubsystem compressorSubsystem;
+    public static BallSubsystem ballSubsystem;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -49,6 +50,8 @@ public class Robot extends TimedRobot {
         driveTrainSubsystem = new DriveTrainSubsystem();
         liftSystem = new LiftSystem();
         compressorSubsystem = new CompressorSubsystem();
+        ballSubsystem = new BallSubsystem();
+        
 
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
@@ -75,6 +78,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("Disable Compressor", new DisableCompressor());
         SmartDashboard.putNumber("Elevator Height", 60);
         SmartDashboard.putData("Lift Elevator", new LiftElevator(SmartDashboard.getNumber("Elevator Height", 1)));
+        SmartDashboard.putData("Ball Drop", new BallDrop());
         
     }
 

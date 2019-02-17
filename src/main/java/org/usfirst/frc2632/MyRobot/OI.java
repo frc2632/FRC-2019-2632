@@ -72,10 +72,21 @@ public class OI {
         Button yButton = new JoystickButton(controller, 4);
 
 
-        aButton.whenPressed(new ZachHatchGrab());
-        bButton.whenPressed(new SpeedRacer());
-        xButton.whenPressed(new DisableCompressor());
+        xButton.whenPressed(new ZachHatchGrab());
+        bButton.whileHeld(new SpeedRacer());
+        aButton.whileHeld(new SlowDrive());
         yButton.whenPressed(new LiftElevator(60));
+
+
+        Button button2 = new JoystickButton(secondaryController, 2);
+        Button button3 = new JoystickButton(secondaryController, 3);
+        Button button4 = new JoystickButton(secondaryController, 4);
+        Button button5 = new JoystickButton(secondaryController, 5);
+        Button button6 = new JoystickButton(secondaryController, 6);
+
+        button2.whenPressed(new ZachHatchGrab());
+        button3.whenPressed(new ZachHatchRelease());
+        button4.whileHeld(new BallDrop());
 
         // SmartDashboard Buttons
 
