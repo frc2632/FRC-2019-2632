@@ -48,7 +48,7 @@ public class RobotMap{
     public static final int CAMERA_SERVO = 0;
 
 
-    public static final int SYSTEM_SOLENOID = 0;;
-    public static final int BALL_SOLENOID = 1;
+    public static final int SYSTEM_SOLENOID = 1;;
+    public static final int BALL_SOLENOID = 0;
     
 }
