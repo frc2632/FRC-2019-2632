@@ -20,8 +20,7 @@ public class BallSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   Solenoid tilt = new Solenoid(RobotMap.BALL_SOLENOID);
-  Servo leftServo = new Servo(RobotMap.BALL_LEFT_SERVO);
-  Servo rightServo = new Servo(RobotMap.BALL_RIGHT_SERVO);
+
   
   
   @Override
