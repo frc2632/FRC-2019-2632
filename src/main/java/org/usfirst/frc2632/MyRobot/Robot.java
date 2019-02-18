@@ -79,6 +79,9 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("Elevator Height", 60);
         SmartDashboard.putData("Lift Elevator", new LiftElevator(SmartDashboard.getNumber("Elevator Height", 1)));
         SmartDashboard.putData("Ball Drop", new BallDrop());
+        SmartDashboard.putBoolean("Hatch Catcher Limit", hatchCatcherSubsystem.getLimitSwitch());
+        SmartDashboard.putNumber("M0 -Back", Robot.liftSystem.getRear());
+        SmartDashboard.putNumber("M1 -Front", Robot.liftSystem.getMid());
         
     }
 
@@ -106,7 +109,7 @@ public class Robot extends TimedRobot {
     /**
      * This function is called periodically during autonomous
      */
-    @Override
+       @Override
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
@@ -125,6 +128,9 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+        SmartDashboard.putNumber("M0 -Back", Robot.liftSystem.getRear());
+        SmartDashboard.putNumber("M1 -Front", Robot.liftSystem.getMid());
+        SmartDashboard.putData(Scheduler.getInstance());
         Scheduler.getInstance().run();
     }
 }

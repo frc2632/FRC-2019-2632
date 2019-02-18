@@ -10,47 +10,43 @@ package org.usfirst.frc2632.MyRobot.commands;
 import org.usfirst.frc2632.MyRobot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class ZachHatchRelease extends Command {
-  boolean finished;
-  public ZachHatchRelease() {
+public class MoveHatchCatcher extends Command {
+  public MoveHatchCatcher() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.hatchCatcherSubsystem);
-    requires(Robot.liftSystem);
-    finished = false;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     Robot.hatchCatcherSubsystem.moveSystem(true);
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double originalHeight = Robot.liftSystem.getElevatorHeight();
-    Robot.liftSystem.liftElevator(originalHeight + 2);
-    if (Robot.liftSystem.getElevatorHeight() == originalHeight + 2) {
-      Robot.hatchCatcherSubsystem.moveSystem(false);
-      finished = true;
-    }
+    SmartDashboard.putString("RUNNING", "YES");
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return finished;
+    return Robot.hatchCatcherSubsystem.getLimitSwitch();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.hatchCatcherSubsystem.moveSystem(false);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.hatchCatcherSubsystem.moveSystem(false);
   }
 }

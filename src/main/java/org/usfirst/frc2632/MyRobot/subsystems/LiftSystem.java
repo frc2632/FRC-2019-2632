@@ -12,7 +12,11 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc2632.MyRobot.RobotMap;
+import org.usfirst.frc2632.MyRobot.commands.LiftInit;
+import org.usfirst.frc2632.MyRobot.commands.PIDLiftOverride;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -27,6 +31,7 @@ public class LiftSystem extends Subsystem {
   WPI_TalonSRX midLiftMotor;
   WPI_TalonSRX rearLiftMotor;
   WPI_TalonSRX wheelMotor;
+  DigitalInput configLimitSwitch;
   
   
   public LiftSystem(){
@@ -34,8 +39,10 @@ public class LiftSystem extends Subsystem {
     frontLiftMotor = new WPI_TalonSRX(RobotMap.FRONT_LIFT_MOTOR);
     midLiftMotor = new WPI_TalonSRX(RobotMap.MID_LIFT_MOTOR);
     rearLiftMotor = new WPI_TalonSRX(RobotMap.BACK_LIFT_MOTOR);
-    wheelMotor = new WPI_TalonSRX(RobotMap.LIFT_WHEEL_MOTOR);
 
+    wheelMotor = new WPI_TalonSRX(RobotMap.LIFT_WHEEL_MOTOR);
+    configLimitSwitch = new DigitalInput(RobotMap.LIFT_CONFIG_LIMITSWITCH);
+    /*
     frontLiftMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
     midLiftMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
     rearLiftMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
@@ -52,16 +59,16 @@ public class LiftSystem extends Subsystem {
     rearLiftMotor.config_kF(1, RobotMap.kfRearLift);
     rearLiftMotor.config_kD(1, RobotMap.kdRearLift);
     rearLiftMotor.config_kP(1, RobotMap.kpRearLift);
-
+    */
 
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new PIDLiftOverride());
   }
-
+/*
   public void setFront(double setpoint){
     frontLiftMotor.set(ControlMode.Position, setpoint);
   }
@@ -73,7 +80,7 @@ public class LiftSystem extends Subsystem {
   public void setRear(double setpoint) {
     rearLiftMotor.set(ControlMode.Position, setpoint);
   }
-  
+  */
   public double getFront() {
     return frontLiftMotor.get();
   }
@@ -101,6 +108,11 @@ public class LiftSystem extends Subsystem {
     rearLiftMotor.set(ControlMode.Position, -pulses / 2);
   }
 
+  public void liftElevatorManual(Joystick joystick){
+    midLiftMotor.set(ControlMode.PercentOutput, joystick.getY());
+    rearLiftMotor.set(ControlMode.PercentOutput, -joystick.getY());
+  }
+
   public double getElevatorHeight(){
     return midLiftMotor.get();
   }
@@ -109,7 +121,9 @@ public class LiftSystem extends Subsystem {
     wheelMotor.set(controller.getX(Hand.kRight));
   }
 
- 
+  public boolean getLimitSwitch(){
+    return configLimitSwitch.get();
+  }
 
 
 

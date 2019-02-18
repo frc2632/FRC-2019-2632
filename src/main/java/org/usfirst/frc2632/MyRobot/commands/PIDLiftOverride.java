@@ -11,36 +11,28 @@ import org.usfirst.frc2632.MyRobot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ZachHatchRelease extends Command {
-  boolean finished;
-  public ZachHatchRelease() {
+public class PIDLiftOverride extends Command {
+  public PIDLiftOverride() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.hatchCatcherSubsystem);
     requires(Robot.liftSystem);
-    finished = false;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.hatchCatcherSubsystem.moveSystem(true);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double originalHeight = Robot.liftSystem.getElevatorHeight();
-    Robot.liftSystem.liftElevator(originalHeight + 2);
-    if (Robot.liftSystem.getElevatorHeight() == originalHeight + 2) {
-      Robot.hatchCatcherSubsystem.moveSystem(false);
-      finished = true;
-    }
+    Robot.liftSystem.liftElevatorManual(Robot.oi.getJoystick());
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return finished;
+    return false;
   }
 
   // Called once after isFinished returns true
