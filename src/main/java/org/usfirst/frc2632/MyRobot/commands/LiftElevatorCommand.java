@@ -7,41 +7,22 @@
 
 package org.usfirst.frc2632.MyRobot.commands;
 
-import org.usfirst.frc2632.MyRobot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-public class WeirdLift extends Command {
-  double frontStartingValue;
-  double midStartingValue;
-  double rearStartingValue;
-  double setpoint;
-
-  public WeirdLift(double inputSetpoint) {
+public class LiftElevatorCommand extends Command {
+  public LiftElevatorCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.liftSystem);
-    setpoint = inputSetpoint;
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    frontStartingValue = Robot.liftSystem.getFront();
-    midStartingValue = Robot.liftSystem.getMid();
-    rearStartingValue = Robot.liftSystem.getRear();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(frontStartingValue!=setpoint){
-      if(frontStartingValue > setpoint){
-
-      }
-      else if (frontStartingValue < setpoint) {
-
-      }
-    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

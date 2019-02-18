@@ -90,9 +90,9 @@ public class OI {
         button6.whenPressed(new MoveHatchCatcher());
         button7.whenPressed(new ZachHatchRelease());
         button2.whileHeld(new BallDrop());
-        button4.whileHeld(new LiftElevator(24));
-        button3.whenPressed(new LiftElevator(56));
-        button5.whenPressed(new LiftElevator(83));
+        //button4.whileHeld(new LiftElevator(24));
+        //button3.whenPressed(new LiftElevator(56));
+        //button5.whenPressed(new LiftElevator(83));
         //button9.whileHeld(new PIDLiftOverride());
 
         // SmartDashboard Buttons

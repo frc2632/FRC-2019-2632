@@ -12,7 +12,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc2632.MyRobot.RobotMap;
-import org.usfirst.frc2632.MyRobot.commands.LiftInit;
+//import org.usfirst.frc2632.MyRobot.commands.LiftInit;
 import org.usfirst.frc2632.MyRobot.commands.PIDLiftOverride;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -97,7 +97,7 @@ public class LiftSystem extends Subsystem {
      boolean safePos = frontLiftMotor.get() <= safeValue && midLiftMotor.get() <= safeValue && rearLiftMotor.get() <= safeValue;
     return safePos;
   }
-  
+  /*
   public void liftElevator(double value){
     midLiftMotor.set(ControlMode.Position, value/2);
     rearLiftMotor.set(ControlMode.Position, -value/2);
@@ -107,7 +107,7 @@ public class LiftSystem extends Subsystem {
     midLiftMotor.set(ControlMode.Position, pulses / 2);
     rearLiftMotor.set(ControlMode.Position, -pulses / 2);
   }
-
+*/
   public void liftElevatorManual(Joystick joystick){
     midLiftMotor.set(ControlMode.PercentOutput, joystick.getY());
     rearLiftMotor.set(ControlMode.PercentOutput, -joystick.getY());

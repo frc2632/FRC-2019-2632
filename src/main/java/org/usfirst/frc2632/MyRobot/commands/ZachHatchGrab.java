@@ -29,7 +29,7 @@ public class ZachHatchGrab extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.liftSystem.liftElevator(Robot.liftSystem.getElevatorHeight() + 10);
+    //Robot.liftSystem.liftElevator(Robot.liftSystem.getElevatorHeight() + 10);
     SmartDashboard.putString("RUNNING", "YES");
   }
 
