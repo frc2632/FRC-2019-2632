@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc2632.MyRobot.commands.*;
+import org.usfirst.frc2632.MyRobot.commands.elevatorCommands.ElevatorToZero;
 import org.usfirst.frc2632.MyRobot.subsystems.*;
 
 /**
@@ -36,9 +37,10 @@ public class Robot extends TimedRobot {
     public static ZachHatchCatcher hatchCatcherSubsystem;
     public static CameraSubsystem cameraSubsystem;
     public static DriveTrainSubsystem driveTrainSubsystem;
-    public static LiftSystem liftSystem;
+    public static ElevatorSubsystem elevatorSubsystem;
     public static CompressorSubsystem compressorSubsystem;
     public static BallSubsystem ballSubsystem;
+    public static BlueDriveWheels blueDriveWheels;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -48,9 +50,10 @@ public class Robot extends TimedRobot {
         hatchCatcherSubsystem = new ZachHatchCatcher();
         cameraSubsystem = new CameraSubsystem();
         driveTrainSubsystem = new DriveTrainSubsystem();
-        liftSystem = new LiftSystem();
+        elevatorSubsystem = new ElevatorSubsystem();
         compressorSubsystem = new CompressorSubsystem();
         ballSubsystem = new BallSubsystem();
+        blueDriveWheels = new BlueDriveWheels();
         
 
         // OI must be constructed after subsystems. If the OI creates Commands
@@ -77,11 +80,8 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData(Scheduler.getInstance());
         SmartDashboard.putData("Disable Compressor", new DisableCompressor());
         SmartDashboard.putNumber("Elevator Height", 60);
-        SmartDashboard.putData("Lift Elevator", new LiftElevator(SmartDashboard.getNumber("Elevator Height", 1)));
         SmartDashboard.putData("Ball Drop", new BallDrop());
         SmartDashboard.putBoolean("Hatch Catcher Limit", hatchCatcherSubsystem.getLimitSwitch());
-        SmartDashboard.putNumber("M0 -Back", Robot.liftSystem.getRear());
-        SmartDashboard.putNumber("M1 -Front", Robot.liftSystem.getMid());
         
     }
 
@@ -128,8 +128,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
-        SmartDashboard.putNumber("M0 -Back", Robot.liftSystem.getRear());
-        SmartDashboard.putNumber("M1 -Front", Robot.liftSystem.getMid());
         SmartDashboard.putData(Scheduler.getInstance());
         Scheduler.getInstance().run();
     }

@@ -7,29 +7,34 @@
 
 package org.usfirst.frc2632.MyRobot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import org.usfirst.frc2632.MyRobot.RobotMap;
 
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Add your docs here.
  */
-public class BallSubsystem extends Subsystem {
+public class BlueDriveWheels extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  Solenoid solenoid = new Solenoid(RobotMap.BALL_SOLENOID);
-  
+  public TalonSRX liftWheelMotor;
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    //setDefaultCommand(new BallDrop());
+    // setDefaultCommand(new MySpecialCommand());
+  }
+  public BlueDriveWheels(){
+    liftWheelMotor = new TalonSRX(RobotMap.LIFT_WHEEL_MOTOR);
+
   }
 
-  public void tilt(boolean direction){
-    //false = right, true = left
-    solenoid.set(direction);
-    
-    
-  }
+  public void driveBlueWheels(double value){
+    liftWheelMotor.set(ControlMode.PercentOutput, value);
+}
+
+
 }

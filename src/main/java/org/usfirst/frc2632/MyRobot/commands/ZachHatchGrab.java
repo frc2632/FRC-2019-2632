@@ -11,7 +11,7 @@ import org.usfirst.frc2632.MyRobot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+/*
 public class ZachHatchGrab extends Command {
   boolean finished;
   public ZachHatchGrab() {
@@ -30,7 +30,6 @@ public class ZachHatchGrab extends Command {
   @Override
   protected void execute() {
     Robot.liftSystem.liftElevator(Robot.liftSystem.getElevatorHeight() + 10);
-    SmartDashboard.putString("RUNNING", "YES");
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -43,7 +42,6 @@ public class ZachHatchGrab extends Command {
   @Override
   protected void end() {
     Robot.hatchCatcherSubsystem.moveSystem(false);
-    SmartDashboard.putString("RUNNING", "NO");
   }
 
   // Called when another command which requires one or more of the same
@@ -52,4 +50,4 @@ public class ZachHatchGrab extends Command {
   protected void interrupted() {
     Robot.hatchCatcherSubsystem.moveSystem(false);
   }
-}
+}*/

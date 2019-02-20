@@ -5,54 +5,40 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc2632.MyRobot.commands;
+package org.usfirst.frc2632.MyRobot.commands.elevatorCommands;
 
 import org.usfirst.frc2632.MyRobot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class WeirdLift extends Command {
-  double frontStartingValue;
-  double midStartingValue;
-  double rearStartingValue;
-  double setpoint;
-
-  public WeirdLift(double inputSetpoint) {
+public class initElevator extends Command {
+  public initElevator() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.liftSystem);
-    setpoint = inputSetpoint;
+    requires(Robot.elevatorSubsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    frontStartingValue = Robot.liftSystem.getFront();
-    midStartingValue = Robot.liftSystem.getMid();
-    rearStartingValue = Robot.liftSystem.getRear();
+    Robot.elevatorSubsystem.incrementElevator();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(frontStartingValue!=setpoint){
-      if(frontStartingValue > setpoint){
-
-      }
-      else if (frontStartingValue < setpoint) {
-
-      }
-    }
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.elevatorSubsystem.getConfigLimitSwitch();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.elevatorSubsystem.zeroHeight();
   }
 
   // Called when another command which requires one or more of the same

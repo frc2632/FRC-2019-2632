@@ -5,16 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc2632.MyRobot.commands;
+package org.usfirst.frc2632.MyRobot.commands.elevatorCommands;
 
 import org.usfirst.frc2632.MyRobot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DisableElevatorPID extends Command {
-  public DisableElevatorPID() {
+public class ElevatorDriveCommand extends Command {
+  public ElevatorDriveCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.liftSystem);
+    requires(Robot.elevatorSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -25,6 +25,7 @@ public class DisableElevatorPID extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.elevatorSubsystem.elevatorLift(Robot.oi.getController());
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -36,11 +37,13 @@ public class DisableElevatorPID extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.elevatorSubsystem.elevatorLift(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.elevatorSubsystem.elevatorLift(0);
   }
 }

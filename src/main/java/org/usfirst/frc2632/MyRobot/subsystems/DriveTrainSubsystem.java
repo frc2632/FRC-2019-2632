@@ -17,11 +17,12 @@ import org.usfirst.frc2632.MyRobot.RobotMap;
 import org.usfirst.frc2632.MyRobot.commands.*;
 //import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 
-
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 
 
@@ -38,9 +39,11 @@ public class DriveTrainSubsystem extends Subsystem {
     private WPI_TalonSRX LFSpeedController;
     private WPI_TalonSRX RRSpeedController;
     private WPI_TalonSRX RFSpeedController;
+    
     public DifferentialDrive driveTrain;
 
     public DriveTrainSubsystem() {
+
 
         //The two letters in front of speed controller stand for its location 
         //ie. LF=Left Front, RR= Right Rear.
@@ -95,11 +98,12 @@ public class DriveTrainSubsystem extends Subsystem {
         driveTrain.arcadeDrive(rotation, throttle);
     }
     public void slowArcade(XboxController controller){
-        driveTrain.arcadeDrive((controller.getX(Hand.kLeft) * .25), (controller.getY(Hand.kLeft) * .25));
+        driveTrain.arcadeDrive(-(controller.getX(Hand.kLeft) * .50), (controller.getY(Hand.kLeft) * .50));
     }
     
     public void slowTank(XboxController controller) {
         tank(-(controller.getY(Hand.kLeft)*.25), (controller.getY(Hand.kRight)*.25));
     }
+    
 }
 

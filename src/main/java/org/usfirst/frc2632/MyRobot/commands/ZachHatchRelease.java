@@ -16,7 +16,6 @@ public class ZachHatchRelease extends Command {
   public ZachHatchRelease() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.hatchCatcherSubsystem);
-    requires(Robot.liftSystem);
     finished = false;
   }
 
@@ -29,12 +28,11 @@ public class ZachHatchRelease extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double originalHeight = Robot.liftSystem.getElevatorHeight();
-    Robot.liftSystem.liftElevator(originalHeight + 2);
-    if (Robot.liftSystem.getElevatorHeight() == originalHeight + 2) {
-      Robot.hatchCatcherSubsystem.moveSystem(false);
-      finished = true;
-    }
+    //double originalHeight = Robot.elevatorSubsystem.getElevatorHeight();
+    //Robot.liftSystem.liftElevator(originalHeight + 2);
+    //if (Robot.liftSystem.getElevatorHeight() == originalHeight + 2) {
+      
+    //}
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -46,11 +44,13 @@ public class ZachHatchRelease extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.hatchCatcherSubsystem.moveSystem(false);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.hatchCatcherSubsystem.moveSystem(false);
   }
 }

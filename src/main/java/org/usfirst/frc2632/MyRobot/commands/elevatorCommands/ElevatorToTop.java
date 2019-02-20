@@ -5,34 +5,36 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc2632.MyRobot.commands;
+package org.usfirst.frc2632.MyRobot.commands.elevatorCommands;
 
 import org.usfirst.frc2632.MyRobot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class PIDLiftOverride extends Command {
-  public PIDLiftOverride() {
+public class ElevatorToTop extends Command {
+  boolean finished;
+  public ElevatorToTop() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.liftSystem);
+    requires(Robot.elevatorSubsystem);
+    finished = false;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.elevatorSubsystem.elevatorLiftInches(46);
+    finished = true;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.liftSystem.liftElevatorManual(Robot.oi.getJoystick());
-
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return finished;
   }
 
   // Called once after isFinished returns true

@@ -12,6 +12,11 @@
 package org.usfirst.frc2632.MyRobot;
 
 import org.usfirst.frc2632.MyRobot.commands.*;
+import org.usfirst.frc2632.MyRobot.commands.elevatorCommands.ClimbJoystick;
+import org.usfirst.frc2632.MyRobot.commands.elevatorCommands.DriveLiftWheel;
+import org.usfirst.frc2632.MyRobot.commands.elevatorCommands.ElevatorDriveCommand;
+import org.usfirst.frc2632.MyRobot.commands.elevatorCommands.ElevatorToMid;
+import org.usfirst.frc2632.MyRobot.commands.elevatorCommands.initElevator;
 
 import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.Joystick;
@@ -70,11 +75,16 @@ public class OI {
         Button bButton = new JoystickButton(controller, 2);
         Button xButton = new JoystickButton(controller, 3);
         Button yButton = new JoystickButton(controller, 4);
+        Button leftBumperButton = new JoystickButton(controller, 5);
+        Button rightBumperButton = new JoystickButton(controller, 6);
 
 
-        xButton.whenPressed(new ZachHatchGrab());
+        //xButton.whenPressed(new ZachHatchRelease());
         bButton.whileHeld(new SpeedRacer());
-        aButton.whileHeld(new SlowDrive());
+        aButton.whileHeld(new BackwardsSpeedRacer());
+        yButton.whileHeld(new SlowDrive());
+        //rightBumperButton.whileHeld(new ElevatorDriveCommand());
+        //leftBumperButton.whileHeld(new ClimbJoystick());
 
 
         Button button1 = new JoystickButton(secondaryController, 1);
@@ -87,12 +97,12 @@ public class OI {
         Button button8 = new JoystickButton(secondaryController, 8);
         Button button9 = new JoystickButton(secondaryController, 9);
 
-        button6.whenPressed(new MoveHatchCatcher());
-        button7.whenPressed(new ZachHatchRelease());
+        button4.whenPressed(new MoveHatchCatcher());
+        button5.whileHeld(new ZachHatchRelease());
         button2.whileHeld(new BallDrop());
-        button4.whileHeld(new LiftElevator(24));
-        button3.whenPressed(new LiftElevator(56));
-        button5.whenPressed(new LiftElevator(83));
+        button1.whileHeld(new DriveLiftWheel());
+        //button9.whenPressed(new ElevatorToMid());
+        //button8.whenPressed(new initElevator());
         //button9.whileHeld(new PIDLiftOverride());
 
         // SmartDashboard Buttons
